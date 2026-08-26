@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Yahia's Favorites</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;600;700;800&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="style.css" />
+    <style>
+      body { background: linear-gradient(180deg, #eefbff 0%, #f8f3ff 100%); }
+      .subpage {
+        width: min(980px, calc(100% - 24px));
+        margin: 32px auto 48px;
+        background: rgba(255,255,255,0.8);
+        border: 3px solid rgba(93, 127, 255, 0.12);
+        border-radius: 28px;
+        padding: 30px 24px;
+        box-shadow: 0 18px 40px rgba(11,61,145,0.12);
+      }
+      .subpage-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+        flex-wrap: wrap;
+        margin-bottom: 18px;
+      }
+      .subpage h1 {
+        margin: 0;
+        font-family: "Baloo 2", cursive;
+        font-size: clamp(2.5rem, 5vw, 4rem);
+      }
+      .page-link {
+        display: inline-block;
+        text-decoration: none;
+        color: #0b3d91;
+        background: #eaf3ff;
+        border: 2px solid rgba(93,127,255,0.2);
+        border-radius: 999px;
+        padding: 10px 16px;
+        font-weight: 800;
+      }
+      .favorites-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 18px;
+      }
+      .favorite-card {
+        padding: 22px 20px;
+        border-radius: 24px;
+        border: 3px solid rgba(93,127,255,0.12);
+      }
+      .favorite-card h2 {
+        margin: 12px 0 8px;
+        font-family: "Baloo 2", cursive;
+        font-size: 2.1rem;
+      }
+      .favorite-card p {
+        margin: 0;
+        color: #35506a;
+        line-height: 1.8;
+      }
+      .icon {
+        font-size: 2.7rem;
+      }
+      .reading { background: linear-gradient(180deg, #fff2d8, #ffe4ef); }
+      .math { background: linear-gradient(180deg, #eaf3ff, #edf0ff); }
+      .tech { background: linear-gradient(180deg, #e8fff2, #eef6ff); }
+      .soccer { background: linear-gradient(180deg, #fff0d2, #dfeaff); }
+      @media (max-width: 700px) {
+        .favorites-grid { grid-template-columns: 1fr; }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="subpage">
+      <div class="subpage-header">
+        <h1>My Favorites</h1>
+        <a class="page-link" href="index.html">Back to Home</a>
+      </div>
+
+      <div class="favorites-grid">
+        <article class="favorite-card reading">
+          <div class="icon">📚</div>
+          <h2>Reading</h2>
+          <p>I enjoy exploring imaginative stories, learning new ideas, and visiting exciting worlds through books. Reading helps me think bigger and dream bigger too.</p>
+        </article>
+
+        <article class="favorite-card math">
+          <div class="icon">➗</div>
+          <h2>Math</h2>
+          <p>Numbers, patterns, and solving problems make me think creatively and confidently. I like when a tough challenge finally clicks.</p>
+        </article>
+
+        <article class="favorite-card tech">
+          <div class="icon">💻</div>
+          <h2>Technology</h2>
+          <p>I love learning how computers and tools work and using them to create cool ideas. It feels exciting to build something from nothing.</p>
+        </article>
+
+        <article class="favorite-card soccer">
+          <div class="icon">⚽</div>
+          <h2>Soccer</h2>
+          <p>Soccer is my favorite game because it is fast, fun, and full of teamwork and energy. I love running, passing, and making plays.</p>
+        </article>
+
+        <article class="favorite-card soccer">
+          <div class="icon">⭐</div>
+          <h2>Cristiano Ronaldo</h2>
+          <p>My favorite soccer player is Cristiano Ronaldo because he works hard, stays focused, and plays with so much energy and passion.</p>
+        </article>
+
+        <article class="favorite-card reading">
+          <div class="icon">🎨</div>
+          <h2>Creativity</h2>
+          <p>I enjoy drawing, imagining, and coming up with new ideas. Creativity helps me think in new and fun ways every day.</p>
+        </article>
+
+        <article class="favorite-card tech">
+          <div class="icon">🏆</div>
+          <h2>Real Madrid</h2>
+          <p>I love Real Madrid because their style, spirit, and energy make the game feel exciting and unforgettable.</p>
+        </article>
+      </div>
+    </div>
+  </body>
+</html>

@@ -83,6 +83,35 @@
         border: 3px solid rgba(247, 201, 73, 0.35);
       }
 
+      .movement-controls {
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+      }
+
+      .movement-button {
+        width: 76px;
+        height: 54px;
+        padding: 0;
+        background: rgba(123, 224, 255, 0.14);
+        border: 2px solid rgba(123, 224, 255, 0.45);
+        color: white;
+        font-size: 1.8rem;
+        line-height: 1;
+        touch-action: none;
+        user-select: none;
+      }
+
+      .movement-button:active {
+        transform: translateY(1px) scale(0.96);
+        background: rgba(123, 224, 255, 0.3);
+      }
+
+      .fire-button {
+        background: linear-gradient(135deg, var(--real-red), var(--real-gold));
+        border-color: rgba(247, 201, 73, 0.7);
+      }
+
       .skyline {
         position: absolute;
         inset: auto 0 0 0;
@@ -219,6 +248,126 @@
         color: var(--accent);
         font-weight: 800;
       }
+
+      .leaderboard-panel {
+        background: rgba(255, 255, 255, 0.06);
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        border-radius: 18px;
+        padding: 18px;
+      }
+
+      .leaderboard-panel h2 {
+        margin: 0 0 12px;
+        font-family: "Baloo 2", cursive;
+        font-size: 2rem;
+        color: var(--real-gold);
+      }
+
+      .leaderboard-start {
+        margin-bottom: 14px;
+      }
+
+      .leaderboard-list {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        display: grid;
+        gap: 10px;
+      }
+
+      .leaderboard-item {
+        display: grid;
+        grid-template-columns: 40px 1fr auto;
+        gap: 12px;
+        align-items: center;
+        background: rgba(11, 61, 145, 0.35);
+        border: 1px solid rgba(123, 224, 255, 0.18);
+        border-radius: 12px;
+        padding: 10px 12px;
+        font-weight: 700;
+      }
+
+      .leaderboard-rank {
+        width: 32px;
+        height: 32px;
+        display: grid;
+        place-items: center;
+        border-radius: 50%;
+        background: linear-gradient(135deg, var(--real-red), var(--real-gold));
+        color: white;
+        font-weight: 900;
+      }
+
+      .leaderboard-name {
+        color: var(--text);
+      }
+
+      .leaderboard-score {
+        color: var(--real-gold);
+      }
+
+      .leaderboard-empty {
+        color: rgba(255, 255, 255, 0.7);
+        font-style: italic;
+      }
+
+      .modal-backdrop {
+        position: fixed;
+        inset: 0;
+        background: rgba(2, 8, 18, 0.72);
+        display: none;
+        align-items: center;
+        justify-content: center;
+        z-index: 1000;
+        padding: 20px;
+      }
+
+      .modal-backdrop.visible {
+        display: flex;
+      }
+
+      .modal-card {
+        width: min(420px, 100%);
+        background: rgba(10, 18, 32, 0.96);
+        border: 2px solid rgba(247, 201, 73, 0.4);
+        border-radius: 20px;
+        padding: 22px;
+        box-shadow: 0 18px 40px rgba(0,0,0,0.35);
+      }
+
+      .modal-card h3 {
+        margin: 0 0 10px;
+        font-size: 2rem;
+        color: var(--real-gold);
+      }
+
+      .modal-card p {
+        margin: 0 0 16px;
+        color: rgba(255,255,255,0.85);
+      }
+
+      .name-input {
+        width: 100%;
+        padding: 12px 14px;
+        border-radius: 12px;
+        border: 1px solid rgba(123, 224, 255, 0.28);
+        background: rgba(255,255,255,0.05);
+        color: white;
+        font-size: 1rem;
+        margin-bottom: 14px;
+      }
+
+      .modal-actions {
+        display: flex;
+        justify-content: flex-end;
+        gap: 10px;
+      }
+
+      .secondary {
+        background: rgba(255,255,255,0.08);
+        color: white;
+        border: 1px solid rgba(255,255,255,0.12);
+      }
     </style>
   </head>
   <body>
@@ -239,12 +388,35 @@
           <div id="ship" class="ship" aria-label="Player ship"></div>
         </div>
 
+        <div class="movement-controls" aria-label="Ship movement controls">
+          <button id="leftButton" class="movement-button" type="button" aria-label="Move left">&#8592;</button>
+          <button id="fireButton" class="movement-button fire-button" type="button" aria-label="Shoot">&#9679;</button>
+          <button id="rightButton" class="movement-button" type="button" aria-label="Move right">&#8594;</button>
+        </div>
+
+        <div class="leaderboard-panel">
+          <button id="startButton" class="start leaderboard-start">Start Game</button>
+          <h2>Top Players</h2>
+          <ul id="leaderboardList" class="leaderboard-list" aria-live="polite"></ul>
+        </div>
+
         <div class="controls">
           <div class="buttons">
-            <button id="startButton" class="start">Start Game</button>
             <a class="button home" href="index.html">Back to Home</a>
           </div>
           <div id="message" class="message">Press Start to begin.</div>
+        </div>
+      </div>
+    </div>
+
+    <div id="nameModal" class="modal-backdrop" aria-live="assertive">
+      <div class="modal-card">
+        <h3>New High Score</h3>
+        <p>Enter your name to save your score on the leaderboard.</p>
+        <input id="playerNameInput" class="name-input" type="text" maxlength="14" placeholder="Your name" />
+        <div class="modal-actions">
+          <button id="cancelSave" class="secondary" type="button">Skip</button>
+          <button id="saveScoreButton" class="start" type="button">Save Score</button>
         </div>
       </div>
     </div>
@@ -257,6 +429,92 @@
       const powerEl = document.getElementById('powerLevel');
       const messageEl = document.getElementById('message');
       const startButton = document.getElementById('startButton');
+      const leaderboardList = document.getElementById('leaderboardList');
+      const nameModal = document.getElementById('nameModal');
+      const playerNameInput = document.getElementById('playerNameInput');
+      const saveScoreButton = document.getElementById('saveScoreButton');
+      const cancelSaveButton = document.getElementById('cancelSave');
+      const leftButton = document.getElementById('leftButton');
+      const rightButton = document.getElementById('rightButton');
+      const fireButton = document.getElementById('fireButton');
+
+      const LEADERBOARD_KEY = 'destroyer-leaderboard';
+
+      function getLeaderboard() {
+        try {
+          const stored = JSON.parse(localStorage.getItem(LEADERBOARD_KEY) || '[]');
+          if (Array.isArray(stored) && stored.length) {
+            return stored;
+          }
+        } catch (error) {
+          console.warn('Could not read leaderboard from storage.', error);
+        }
+
+        return [
+          { name: 'Yahia', score: 180 },
+          { name: 'Sam', score: 150 },
+          { name: 'Mia', score: 120 },
+          { name: 'Leo', score: 90 },
+          { name: 'Ava', score: 70 }
+        ];
+      }
+
+      function sortLeaderboard(entries) {
+        return [...entries]
+          .filter((entry) => entry && typeof entry.score === 'number' && entry.score > 0)
+          .sort((a, b) => b.score - a.score)
+          .slice(0, 5);
+      }
+
+      function saveLeaderboard(entries) {
+        localStorage.setItem(LEADERBOARD_KEY, JSON.stringify(entries));
+      }
+
+      function renderLeaderboard() {
+        const entries = sortLeaderboard(getLeaderboard());
+
+        if (!entries.length) {
+          leaderboardList.innerHTML = '<li class="leaderboard-empty">No scores yet. Start the game!</li>';
+          return;
+        }
+
+        leaderboardList.innerHTML = entries
+          .map((entry, index) => `
+            <li class="leaderboard-item">
+              <span class="leaderboard-rank">${index + 1}</span>
+              <span class="leaderboard-name">${entry.name}</span>
+              <span class="leaderboard-score">${entry.score}</span>
+            </li>
+          `)
+          .join('');
+      }
+
+      function showScorePrompt() {
+        if (score <= 0) {
+          renderLeaderboard();
+          return;
+        }
+
+        playerNameInput.value = '';
+        nameModal.classList.add('visible');
+        playerNameInput.focus();
+      }
+
+      function closeScorePrompt() {
+        nameModal.classList.remove('visible');
+      }
+
+      function savePlayerScore() {
+        const name = playerNameInput.value.trim() || 'Player';
+        const safeName = name.slice(0, 14);
+        const entries = sortLeaderboard(getLeaderboard());
+        entries.push({ name: safeName, score });
+        const finalEntries = sortLeaderboard(entries);
+        saveLeaderboard(finalEntries);
+        renderLeaderboard();
+        closeScorePrompt();
+        messageEl.textContent = `${safeName} is on the leaderboard!`;
+      }
 
       let score = 0;
       let lives = 3;
@@ -370,6 +628,7 @@
         gameRunning = false;
         messageEl.textContent = `Game over! Final score: ${score}`;
         startButton.textContent = 'Play Again';
+        setTimeout(showScorePrompt, 200);
       }
 
       function tick(timestamp) {
@@ -394,8 +653,8 @@
 
         enemyTimer += delta;
         const powerLevel = getPowerLevel();
-        const enemySpeedBoost = 1 + (powerLevel - 1) * 0.25;
-        if (enemyTimer > Math.max(350, 900 - score * 2)) {
+        const enemySpeedBoost = 0.72 + (powerLevel - 1) * 0.14;
+        if (enemyTimer > Math.max(420, 980 - score * 2)) {
           spawnEnemy();
           enemyTimer = 0;
         }
@@ -411,7 +670,7 @@
         });
 
         enemies.forEach((enemy) => {
-          const speed = Number(enemy.dataset.speed || 1.5) * enemySpeedBoost;
+          const speed = Number(enemy.dataset.speed || 1.5) * enemySpeedBoost * 0.8;
           const top = enemy.offsetTop + speed * (delta / 16);
           enemy.style.top = `${top}px`;
 
@@ -470,6 +729,69 @@
       }
 
       startButton.addEventListener('click', startGame);
+      saveScoreButton.addEventListener('click', savePlayerScore);
+      cancelSaveButton.addEventListener('click', () => {
+        closeScorePrompt();
+        renderLeaderboard();
+      });
+
+      function bindMovementButton(button, direction) {
+        const setMoving = (isMoving) => {
+          if (direction === 'left') moveLeft = isMoving;
+          if (direction === 'right') moveRight = isMoving;
+        };
+
+        button.addEventListener('pointerdown', (event) => {
+          event.preventDefault();
+          try {
+            button.setPointerCapture(event.pointerId);
+          } catch (error) {}
+          setMoving(true);
+        });
+        button.addEventListener('pointerup', () => setMoving(false));
+        button.addEventListener('pointercancel', () => setMoving(false));
+        button.addEventListener('lostpointercapture', () => setMoving(false));
+      }
+
+      bindMovementButton(leftButton, 'left');
+      bindMovementButton(rightButton, 'right');
+
+      fireButton.addEventListener('pointerdown', (event) => {
+        event.preventDefault();
+        try {
+          fireButton.setPointerCapture(event.pointerId);
+        } catch (error) {}
+        fireHeld = true;
+        if (fireCooldown <= 0) {
+          launchMissile();
+          fireCooldown = getPowerLevel() >= 4 ? 170 : 220;
+        }
+      });
+      fireButton.addEventListener('pointerup', () => {
+        fireHeld = false;
+        fireCooldown = 0;
+      });
+      fireButton.addEventListener('pointercancel', () => {
+        fireHeld = false;
+        fireCooldown = 0;
+      });
+      fireButton.addEventListener('lostpointercapture', () => {
+        fireHeld = false;
+        fireCooldown = 0;
+      });
+
+      playerNameInput.addEventListener('keydown', (event) => {
+        if (event.key === 'Enter') {
+          savePlayerScore();
+        }
+      });
+
+      nameModal.addEventListener('click', (event) => {
+        if (event.target === nameModal) {
+          closeScorePrompt();
+          renderLeaderboard();
+        }
+      });
 
       document.addEventListener('keydown', (event) => {
         if (event.key === 'ArrowLeft' || event.key.toLowerCase() === 'a') moveLeft = true;
@@ -500,6 +822,7 @@
 
       shipX = gameArea.clientWidth / 2;
       setShipPosition();
+      renderLeaderboard();
     </script>
   </body>
 </html>

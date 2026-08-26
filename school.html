@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Edwards Elementary School</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;600;700;800&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="style.css" />
+    <style>
+      body { background: linear-gradient(180deg, #eefbff 0%, #f8f3ff 100%); }
+      .subpage {
+        width: min(980px, calc(100% - 24px));
+        margin: 32px auto 48px;
+        background: rgba(255,255,255,0.8);
+        border: 3px solid rgba(93, 127, 255, 0.12);
+        border-radius: 28px;
+        padding: 30px 24px;
+        box-shadow: 0 18px 40px rgba(11,61,145,0.12);
+      }
+      .subpage-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+        flex-wrap: wrap;
+        margin-bottom: 18px;
+      }
+      .subpage h1 {
+        margin: 0;
+        font-family: "Baloo 2", cursive;
+        font-size: clamp(2.5rem, 5vw, 4rem);
+      }
+      .page-link {
+        display: inline-block;
+        text-decoration: none;
+        color: #0b3d91;
+        background: #eaf3ff;
+        border: 2px solid rgba(93,127,255,0.2);
+        border-radius: 999px;
+        padding: 10px 16px;
+        font-weight: 800;
+      }
+      .school-box {
+        background: linear-gradient(180deg, #edf8ff, #f7eeff);
+        border: 2px solid #e3ebff;
+        border-radius: 24px;
+        padding: 24px 20px;
+      }
+      .school-box h2 {
+        margin: 0 0 12px;
+        font-family: "Baloo 2", cursive;
+        font-size: 2.3rem;
+      }
+      .school-box p {
+        margin: 0 0 16px;
+        color: #35506a;
+        line-height: 1.8;
+      }
+      .map-link {
+        display: inline-block;
+        padding: 12px 18px;
+        border-radius: 14px;
+        background: linear-gradient(135deg, #d21f3c, #0b3d91);
+        color: white;
+        text-decoration: none;
+        font-weight: 800;
+      }
+      .stats {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 16px;
+        margin-top: 24px;
+      }
+      .stat-box {
+        background: linear-gradient(180deg, #fff8ec, #f2f7ff);
+        border-radius: 18px;
+        padding: 20px 12px;
+        text-align: center;
+        border: 2px solid #e7edf9;
+      }
+      .stat-box strong {
+        display: block;
+        font-size: 2.5rem;
+        color: #3a74d9;
+        font-family: "Baloo 2", cursive;
+      }
+      @media (max-width: 700px) {
+        .stats { grid-template-columns: 1fr; }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="subpage">
+      <div class="subpage-header">
+        <h1>School</h1>
+        <a class="page-link" href="index.html">Back to Home</a>
+      </div>
+
+      <div class="school-box">
+        <h2>Edwards Elementary School</h2>
+        <p>I am proud to learn at Edwards Elementary School in Ames, Iowa. I enjoy school, meeting friends, and learning new things every day. My teachers help me grow, and I feel lucky to be part of such a great place.</p>
+        <p>School is where I practice my reading, math, and science skills. It is also where I learn how to work with others, be kind, and keep trying even when something is hard.</p>
+        <a class="map-link" href="https://www.google.com/maps/search/?api=1&query=Edwards+Elementary+School+Ames+IA" target="_blank" rel="noopener noreferrer">📍 View on Google Maps</a>
+      </div>
+
+      <div class="stats">
+        <div class="stat-box">
+          <strong>10</strong>
+          <span>Years old</span>
+        </div>
+        <div class="stat-box">
+          <strong>4</strong>
+          <span>Big loves</span>
+        </div>
+        <div class="stat-box">
+          <strong>∞</strong>
+          <span>Curiosity</span>
+        </div>
+      </div>
+
+      <div class="school-box" style="margin-top: 24px;">
+        <h2>Why I Like School</h2>
+        <p>I like school because it gives me room to learn, grow, and discover new ideas. I enjoy learning with my classmates and feeling proud when I understand something new.</p>
+      </div>
+    </div>
+  </body>
+</html>
