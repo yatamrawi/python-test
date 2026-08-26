@@ -38,6 +38,21 @@ img {
   margin: 24px auto 48px;
 }
 
+.hala-banner {
+  margin: 8px auto 18px;
+  text-align: center;
+  padding: 18px 20px;
+  border-radius: 18px;
+  background: linear-gradient(135deg, var(--real-red), var(--blue), var(--real-gold));
+  color: white;
+  font-family: "Baloo 2", cursive;
+  font-size: clamp(2rem, 5vw, 4rem);
+  font-weight: 800;
+  letter-spacing: 1px;
+  box-shadow: 0 14px 28px rgba(11, 61, 145, 0.2);
+  text-transform: uppercase;
+}
+
 .topbar {
   display: flex;
   justify-content: space-between;
@@ -54,17 +69,24 @@ img {
 }
 
 .logo {
-  width: 48px;
-  height: 48px;
+  width: 56px;
+  height: 56px;
   display: grid;
   place-items: center;
-  border-radius: 16px;
-  background: linear-gradient(135deg, var(--real-red), var(--real-gold));
-  color: white;
-  font-family: "Baloo 2", cursive;
-  font-size: 2rem;
-  font-weight: 800;
-  box-shadow: 0 8px 18px rgba(210, 31, 60, 0.25);
+  border-radius: 50%;
+  overflow: visible;
+  background: transparent;
+  box-shadow: none;
+  padding: 0;
+}
+
+.logo img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: contain;
+  border-radius: 50%;
+  filter: drop-shadow(0 8px 10px rgba(11, 61, 145, 0.12));
 }
 
 .nav {
